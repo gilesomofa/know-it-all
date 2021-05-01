@@ -1,3 +1,5 @@
+let user = require('../models/user');
+
 //Post req to userlogin
 //Authenticate user and get token
 //Public
@@ -7,9 +9,19 @@ const userLogin = (req, res) => {
     res.json( { email, password });
 }
 
-const userSignup = (req, res) => {
+const userSignup = async (req, res) => {
      const { email, password, username } = req.body;
-    res.send(` ${email} ${password} ${username}'You are signed up, thanks for being a part of the community'`)
+     let user_id = 1;
+     user = new User({
+         user_id,
+         email,
+         password,
+         username
+     })
+     await user.save();
+     let testUser = User.findOne({ user_id })
+    res.json(testUser)
+
 };
 
 const userCreateProfile = (req, res) => {
