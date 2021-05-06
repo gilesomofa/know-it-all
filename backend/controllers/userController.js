@@ -21,7 +21,6 @@ const userSignup = async (req, res) => {
      await user.save();
      let testUser = User.findOne({ user_id })
     res.json(testUser)
-
 };
 
 const userCreateProfile = (req, res) => {
